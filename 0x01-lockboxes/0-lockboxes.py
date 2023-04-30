@@ -8,13 +8,14 @@ def canUnlockAll(boxes):
 
     def dfs(box):
 
-        if box < len(boxes) and box not in unlocked:
+        if box < len(boxes):
             unlocked.append(box)
 
             keys = boxes[box]
 
             for box in keys:
-                dfs(box)
+                if box not in unlocked:
+                    dfs(box)
 
     dfs(0)
     if len(unlocked) != len(boxes):
