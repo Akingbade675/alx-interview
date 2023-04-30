@@ -7,10 +7,11 @@ def canUnlockAll(boxes):
     unlocked = []
 
     def dfs(box):
-        keys = boxes[box]
 
-        if box not in unlocked:
+        if box < len(boxes) and box not in unlocked:
             unlocked.append(box)
+
+            keys = boxes[box]
 
             for box in keys:
                 dfs(box)
