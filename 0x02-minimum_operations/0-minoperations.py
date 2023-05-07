@@ -1,41 +1,25 @@
 #!/usr/bin/python3
-'''In a text file, there is a single character H.
-Your text editor can execute only two operations in this file: Copy All and Paste.
-Given a number n, write a method that calculates the fewest number of operations
-needed to result in exactly n H characters in the file.
-'''
+'''Minimum Operation Interview problem'''
 
 
 def minOperations(n):
     '''Returns: an integer'''
-    isPrime, div = numIsPrime(n)
-    if isPrime:
-        return n
+    if n <= 1:
+        return n  # we need at least one operation to get to one "H"
 
-    if n < 2:
-        return 0
-    
-    return int(div + minOperations(n / div))
+    num_ops = 0  # number of operations so far
+    num_chars = 1  # number of characters in the file so far
+    copied_chars = 1  # number of characters that are currently copied
 
+    while num_chars < n:
+        # we have two options: copy or paste
+        if n % num_chars == 0:  # if num_chars divides n, then we can copy all
+            copied_chars = num_chars
+            num_ops += 1
+        num_chars += copied_chars  # paste the copied characters
+        num_ops += 1
 
-def numIsPrime(num):
-    '''Determine if a num is a prime number'''
-    prime = [2, 3, 5, 7]
-    for i in prime:
-        if num % i == 0 and i != num:
-            return (False, i)
-    return (True, 0)
-
-
-
-n = 4
-print("Min # of operations to reach {} char: {}".format(n, minOperations(n)))
-
-n = 12
-print("Min # of operations to reach {} char: {}".format(n, minOperations(n)))
-
-n = 15
-print("Min # of operations to reach {} char: {}".format(n, minOperations(n)))
-
-n = 14
-print("Min # of operations to reach {} char: {}".format(n, minOperations(n)))
+    if num_chars == n:
+        return num_ops
+    else:
+        return 0  # impossible to reach n
