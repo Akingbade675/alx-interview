@@ -24,24 +24,24 @@ try:
     for line in sys.stdin:
         parser = line.split()
 
-    # skip the line if the format doesn't match above
-    if len(parser) != 9:
-        continue
+        # skip the line if the format doesn't match above
+        if len(parser) != 9:
+            continue
 
-    file_size = int(parser[-1])
-    status_code = parser[-2]
+        file_size = int(parser[-1])
+        status_code = parser[-2]
 
-    total_size += file_size
-    count += 1
+        total_size += file_size
+        count += 1
 
-    # checks if the status_code is exists in the dict `status_codes`
-    if status_code in status_codes.keys():
-        status_codes[status_code] += 1
+        # checks if the status_code is exists in the dict `status_codes`
+        if status_code in status_codes.keys():
+            status_codes[status_code] += 1
 
-    if count == 10:
-        count = 0
-        print('File size: {}'.format(total_size))
-        [print('{}: {}'.format(code, count))
+        if count == 10:
+            count = 0
+            print('File size: {}'.format(total_size))
+            [print('{}: {}'.format(code, count))
             for code, count in sorted(status_codes.items()) if count != 0]
 except Exception:
     pass
