@@ -25,7 +25,7 @@ try:
         parser = line.split()
 
         # skip the line if the format doesn't match above
-        if len(parser) != 9:
+        if len(parser) < 5:
             continue
 
         file_size = int(parser[-1])
@@ -43,8 +43,10 @@ try:
             print('File size: {}'.format(total_size))
             [print('{}: {}'.format(code, count))
                 for code, count in sorted(status_codes.items()) if count != 0]
-except Exception:
+
+except Exception as error:
     pass
+
 finally:
     print('File size: {}'.format(total_size))
     [print('{}: {}'.format(code, count))
