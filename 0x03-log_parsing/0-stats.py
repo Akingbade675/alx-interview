@@ -45,3 +45,7 @@ try:
             for code, count in sorted(status_codes.items()) if count != 0]
 except Exception:
     pass
+finally:
+    print('File size: {}'.format(total_size))
+    [print('{}: {}'.format(code, count))
+    for code, count in sorted(status_codes.items()) if count != 0]
