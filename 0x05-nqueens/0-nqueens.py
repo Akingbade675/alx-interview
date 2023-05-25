@@ -1,5 +1,7 @@
 #!/usr/bin/python3
-'''N queens puzzle challenge of placing N non-attacking queens on an N×N chessboard'''
+'''N queens puzzle challenge:
+    Place N non-attacking queens on an N×N chessboard
+'''
 
 
 import sys
