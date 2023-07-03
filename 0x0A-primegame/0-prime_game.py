@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 '''Prime Game - Interview'''
 
+
 def isWinner(x, nums):
     """function that checks for the winner"""
     if not nums or x < 1:
